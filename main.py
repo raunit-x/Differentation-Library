@@ -33,4 +33,4 @@ if __name__ == '__main__':
         # Use sympy.simplify() method
         x = sympy.symbols('x')
         smpl = regex(str(sympy.simplify(str(value))).replace('**', '^'))
-        print(f"Derivative : {smpl}")
+        print(f"Derivative: {smpl}")

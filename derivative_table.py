@@ -7,7 +7,7 @@ derivative_table = {
     'exp': 'exp(x)',
     'sec': 'tan(x) * sec(x)',
     'csc': '-cot(x) * csc(x)',
-    'cos_inv': '-( 1 / (1 + x ^ 2) ^ 0.5)',
-    'sin_inv': '(1 / (1 + x ^ 2) ^ 0.5)',
+    'cos_inv': '-( 1 / (1 - x ^ 2) ^ 0.5)',
+    'sin_inv': '(1 / (1 - x ^ 2) ^ 0.5)',
     'tan_inv': '(1 / (1 + x ^ 2))'
 }
