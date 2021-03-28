@@ -3,7 +3,7 @@ GRAMMAR RULES:
         EXPR --> TERM | TERM + EXPR | TERM - EXPR
         TERM --> FACTOR | FACTOR * TERM | FACTOR / TERM
       FACTOR --> FACTOR_PRIME | FACTOR ^ FACTOR_PRIME
-FACTOR_PRIME --> <ID, X> | CONSTANT | NUMBER | MATH(EXPR)
+FACTOR_PRIME --> <ID, X> | CONSTANT | NUMBER | MATH(EXPR) | + FACTOR_PRIME | - FACTOR_PRIME | (EXPR)
 """
 
 from tokens import TokenType
@@ -65,6 +65,13 @@ class Parser:
 
     def factor_prime(self):
         token = self.current_token
+        if token.type == TokenType.LPAREN:
+            self.advance()
+            result = self.expr()
+            if self.current_token.type != TokenType.RPAREN:
+                self.raise_error()
+            self.advance()
+            return result
         if token.type == TokenType.NUMBER:
             self.advance()
             return NumberNode(token.value)
