@@ -1,5 +1,6 @@
 from lexer import Lexer
 from parser_ import Parser
+from interpreter import Interpreter
 
 
 while True:
@@ -10,3 +11,6 @@ while True:
     parser = Parser(tokens)
     tree = parser.parse()
     print(f"Tree: {tree}")
+    interpreter = Interpreter()
+    value = interpreter.visit(tree)
+    print(f"Value: {value}")

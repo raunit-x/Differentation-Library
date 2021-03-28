@@ -3,7 +3,9 @@ import string
 
 
 WHITESPACE = ' \t\n'
-MATH_FUNCTIONS = {'sin', 'cos', 'tan', 'cot', 'log', 'exp', 'sin_inv', 'cos_inv', 'tan_inv', 'cot_inv'}
+MATH_FUNCTIONS = {
+    'sin', 'cos', 'tan', 'cot', 'log', 'exp', 'sin_inv', 'cos_inv', 'tan_inv', 'cot_inv', 'sec', 'cosec'
+}
 DIGITS = string.digits
 
 

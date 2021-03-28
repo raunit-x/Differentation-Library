@@ -61,14 +61,14 @@ class MathNode:
     value: any
 
     def __repr__(self):
-        return f"[MATH: {self.operation}({self.value})]"
+        return f"{self.operation}({self.value})"
 
 
 @dataclass
 class VarNode:
 
     def __repr__(self):
-        return "<VAR, x>"
+        return "x"
 
 
 @dataclass
@@ -76,7 +76,7 @@ class ConstantNode:
     value: Token.value
 
     def __repr__(self):
-        return f"<CONST: {self.value}>"
+        return f"{self.value}"
 
 
 @dataclass

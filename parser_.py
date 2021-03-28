@@ -93,5 +93,5 @@ class Parser:
             return PlusNode(self.factor_prime())
         if token.type == TokenType.MINUS:
             self.advance()
-            return PlusNode(self.factor_prime())
+            return MinusNode(self.factor_prime())
         self.raise_error()
