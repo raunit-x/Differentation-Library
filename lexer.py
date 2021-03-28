@@ -4,7 +4,7 @@ import string
 
 WHITESPACE = ' \t\n'
 MATH_FUNCTIONS = {
-    'sin', 'cos', 'tan', 'cot', 'log', 'exp', 'sin_inv', 'cos_inv', 'tan_inv', 'cot_inv', 'sec', 'cosec'
+    'sin', 'cos', 'tan', 'cot', 'log', 'exp', 'sin_inv', 'cos_inv', 'tan_inv', 'cot_inv', 'sec', 'csc'
 }
 DIGITS = string.digits
 

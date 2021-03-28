@@ -39,7 +39,8 @@ class Interpreter:
         f_prime = self.visit(node.value).value
         f = node.value.__repr__()
         operation_prime = derivative_table[node.operation]
-        return Result(f"{operation_prime}({f}) * ({f_prime})")
+        res = operation_prime.replace('x', f'{f}' if not f.count(' ') else f'({f})')
+        return Result(f"{res} * ({f_prime})")
 
     def visit_PlusNode(self, node):
         return self.visit(node.node)
