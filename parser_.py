@@ -81,4 +81,10 @@ class Parser:
             result = self.expr()
             self.advance()  # skip RPAREN
             return MathNode(math_token.value, result)
+        if token.type == TokenType.PLUS:
+            self.advance()
+            return PlusNode(self.factor_prime())
+        if token.type == TokenType.MINUS:
+            self.advance()
+            return PlusNode(self.factor_prime())
         self.raise_error()

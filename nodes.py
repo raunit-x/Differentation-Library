@@ -77,3 +77,19 @@ class ConstantNode:
 
     def __repr__(self):
         return f"<CONST: {self.value}>"
+
+
+@dataclass
+class PlusNode:
+    node: any
+
+    def __repr__(self):
+        return f"(+{self.node})"
+
+
+@dataclass
+class MinusNode:
+    node: any
+
+    def __repr__(self):
+        return f"(-{self.node})"
