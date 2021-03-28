@@ -10,7 +10,7 @@ while True:
     print(f"Tokens: {tokens}")
     parser = Parser(tokens)
     tree = parser.parse()
-    print(f"Tree: {tree}")
+    # print(f"Tree: {tree}")
     interpreter = Interpreter()
     value = interpreter.visit(tree)
     print(f"Value: {value}")
