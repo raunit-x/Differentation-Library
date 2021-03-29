@@ -1,13 +1,23 @@
 derivative_table = {
     'cos': '-sin(x)',
+    'COS': '-SIN(x)',
     'sin': 'cos(x)',
+    'SIN': 'COS(x)',
     'log': '1 / (x)',
+    'LOG': '1 / (x)',
     'tan': 'sec^2(x)',
+    'TAN': 'SEC^2(x)',
     'cot': '-csc^2(x)',
-    'exp': 'exp(x)',
+    'COT': '-CSC^2(x)',
+    'EXP': 'EXP(x)',
     'sec': 'tan(x) * sec(x)',
+    'SEC': 'TAN(x) * SEC(x)',
     'csc': '-cot(x) * csc(x)',
+    'CSC': '-COT(x) * CSC(x)',
     'cos_inv': '-( 1 / (1 - x ^ 2) ^ 0.5)',
+    'COS_INV': '-( 1 / (1 - x ^ 2) ^ 0.5)',
     'sin_inv': '(1 / (1 - x ^ 2) ^ 0.5)',
-    'tan_inv': '(1 / (1 + x ^ 2))'
+    'SIN_INV': '(1 / (1 - x ^ 2) ^ 0.5)',
+    'tan_inv': '(1 / (1 + x ^ 2))',
+    'TAN_INV': '(1 / (1 + x ^ 2))'
 }

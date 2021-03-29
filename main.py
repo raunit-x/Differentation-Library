@@ -5,7 +5,7 @@ from lexer import MATH_FUNCTIONS
 import sympy
 
 
-def regex(expr: str):
+def format_expr(expr: str):
     expr = expr.replace(' ', '')
     new_expr = ''
     for c in expr:
@@ -16,21 +16,29 @@ def regex(expr: str):
     return new_expr
 
 
+def get_derivative(expr, constants=None):
+    x = sympy.symbols('x')
+    expr = str(sympy.simplify(expr.replace('^', '**'))).replace('exp', 'EXP').replace('**', '^')
+    if not constants:
+        constants = {'z', 'y'}
+    lexer = Lexer(expr, constants)
+    tokens = list(lexer.generate_tokens())
+    parser = Parser(tokens)
+    tree = parser.parse()
+    interpreter = Interpreter()
+    expr_prime = interpreter.visit(tree)
+    return format_expr(str(sympy.simplify(str(expr_prime))).replace('**', '^'))
+
+
 if __name__ == '__main__':
     print("SYMBOLIC DIFFERENTIATION CALCULATOR")
     print(f"ALLOWED MATH FUNCTIONS: {MATH_FUNCTIONS}")
-    print(f"SYNTAX: cos(expression), OPERATIONS: [+, -, *, /]")
+    print(f"SYNTAX: cos(expression), OPERATIONS: [+, -, *, /, ^]")
+    print("ENTER ['EXIT/exit/Q/q'] TO QUIT")
     while True:
         text = input("Expr > ")
-        lexer = Lexer(text, {'z', 'y'})
-        tokens = list(lexer.generate_tokens())
-        # print(f"Tokens: {tokens}")
-        parser = Parser(tokens)
-        tree = parser.parse()
-        # print(f"Tree: {tree}")
-        interpreter = Interpreter()
-        value = interpreter.visit(tree)
-        # Use sympy.simplify() method
-        x = sympy.symbols('x')
-        smpl = regex(str(sympy.simplify(str(value))).replace('**', '^'))
-        print(f"Derivative: {smpl}")
+        if text in ['EXIT', 'exit', 'Q', 'q']:
+            print("TERMINATING....")
+            exit()
+        derivative_expr = get_derivative(text)
+        print(f"Derivative: {derivative_expr.lower()}")

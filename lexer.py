@@ -1,12 +1,13 @@
 from tokens import TokenType, Token
 import string
 
-
 WHITESPACE = ' \t\n'
 MATH_FUNCTIONS = {
-    'sin', 'cos', 'tan', 'cot', 'log', 'exp', 'sin_inv', 'cos_inv', 'tan_inv', 'cot_inv', 'sec', 'csc'
+    'sin', 'cos', 'tan', 'cot', 'log', 'EXP', 'sin_inv', 'cos_inv', 'tan_inv', 'cot_inv', 'sec', 'csc',
+    'SIN', 'COS', 'TAN', 'COT', 'LOG', 'EXP', 'SIN_INV', 'COS_INV', 'TAN_INV', 'COT_INV', 'SEC', 'CSC'
 }
 DIGITS = string.digits
+CHARS = string.ascii_letters + '_'
 
 
 class Lexer:
@@ -41,7 +42,7 @@ class Lexer:
     def generate_math_function_or_constant(self):
         function_str = self.current_char
         self.advance()
-        while self.current_char and (self.current_char in string.ascii_lowercase or self.current_char == '_'):
+        while self.current_char and self.current_char in CHARS:
             function_str += self.current_char
             self.advance()
         if function_str in MATH_FUNCTIONS:
@@ -80,7 +81,7 @@ class Lexer:
                 yield Token(TokenType.RPAREN)
             elif self.current_char == '.' or self.current_char in DIGITS:
                 yield self.generate_number()
-            elif self.current_char in string.ascii_lowercase:
+            elif self.current_char in CHARS:
                 yield self.generate_math_function_or_constant()
             else:
                 raise Exception(f"Illegal Character: {self.current_char}")
