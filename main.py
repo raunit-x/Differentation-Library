@@ -18,16 +18,22 @@ def format_expr(expr: str):
 
 def get_derivative(expr, constants=None):
     x = sympy.symbols('x')
+    # expr = expr.replace('exp', 'EXP')
     expr = str(sympy.simplify(expr.replace('^', '**'))).replace('exp', 'EXP').replace('**', '^')
     if not constants:
         constants = {'z', 'y'}
     lexer = Lexer(expr, constants)
     tokens = list(lexer.generate_tokens())
+    # print(tokens)
     parser = Parser(tokens)
     tree = parser.parse()
     interpreter = Interpreter()
-    expr_prime = interpreter.visit(tree)
-    return format_expr(str(sympy.simplify(str(expr_prime))).replace('**', '^'))
+    expr_prime = str(interpreter.visit(tree)).lower()
+    # print(expr_prime)
+    try:
+        return format_expr(str(sympy.simplify(expr_prime.replace('^', '**'))).replace('**', '^'))
+    except Exception as e:
+        return expr_prime
 
 
 if __name__ == '__main__':
