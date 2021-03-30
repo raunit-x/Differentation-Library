@@ -1,4 +1,4 @@
-# Differentation-Library
+# Symbolic Differentation
 <h3> Grammar Rules</h3>
 <code><pre>
       EXPR         --> TERM | TERM + EXPR | TERM - EXPR
